@@ -9,39 +9,53 @@ datasource db {
 }
 
 model Account {
-    id           String   @id @default(cuid())
-    provider     String
-    providerId   String
-    providerData Json
-    userId       String
-    user         User     @relation(fields: [userId], references: [id])
+	id                 String  @id @default(cuid())
+	userId             String
+	type               String
+	provider           String
+	providerAccountId  String
+	refresh_token      String?  @db.Text
+	access_token       String?  @db.Text
+	expires_at         Int?
+	refresh_token_expires_in Int?
+	token_type         String?
+	scope              String?
+	id_token           String?  @db.Text
+	session_state      String?
+
+	user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+	@@unique([provider, providerAccountId])
 }
 
 model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    user         User     @relation(fields: [userId], references: [id])
-    expires      DateTime
-    createdAt    DateTime @default(now())
+	id           		String   @id @default(cuid())
+	sessionToken 		String   @unique
+	userId       		String
+	expires      		DateTime
+	user         		User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 
 // Person is user
 model User {
 	// Authentication fields
-    id            String           @id @default(cuid())
-    createdAt     DateTime         @default(now())
-    updatedAt     DateTime         @updatedAt
-    email         String           @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
+    id            		String    @id @default(cuid())
+	name          		String?
+	bio           		String? @db.Text
+	age          		Int?
+	email         		String?   @unique
+	emailVerified 	 	 DateTime?
+	image         		String?
+	accounts      		Account[]
+	sessions      		Session[]
 
-	// Our schema fields
-	gender                	String
-    name                  	String
+	
+}
+
+model AppUser {
+    id            		    String    @id @default(cuid())
+    gender                	String
     address               	String
     birthDate             	DateTime
     phone                 	String
@@ -50,6 +64,7 @@ model User {
     staff                 	Staff?
     patient               	Patient?
 	insurancePolicy       	InsurancePolicy?
+
 }
 
 model VerificationToken {
@@ -65,7 +80,7 @@ model VerificationToken {
 model Staff {
     id                      String @id @default(cuid())
     userId				  	String @unique
-	user                  	User @relation(fields: [userId], references: [id])
+	user                  	AppUser @relation(fields: [userId], references: [id])
 
     medicalStaff            MedicalStaff?  
     administrativeStaff     AdministrativeStaff?
@@ -148,7 +163,7 @@ model PharmacyInventory {
 model Patient {
     id                    	String @id @default(cuid())
     userId             		String @unique
-    user                	User @relation(fields: [userId], references: [id])
+    user                	AppUser @relation(fields: [userId], references: [id])
 
     height                	Float?
     weight                	Float?
@@ -226,7 +241,7 @@ model InsurancePolicy {
 	insuranceCompany 		InsuranceCompany @relation(fields: [insuranceCompanyId], references: [id])
 	coverageAmount 			Float
 	userId 					String @unique
-	patient 				User @relation(fields: [userId], references: [id])
+	patient 				AppUser @relation(fields: [userId], references: [id])
 }
 
 
