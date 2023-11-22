@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Dashboard from './Dashboard';
 
 export function SignInButton() {
     const { data: session, status } = useSession();
@@ -13,11 +14,20 @@ export function SignInButton() {
     }
   
     if (status === 'authenticated') {
+
+
+      //Do you want this to return an entirely new page? Or should we just return components? 
       return (
-        <Link href={`/dashboard`}>
-          <p>Dashboard</p>
-        </Link>
+
+        <div> 
+
+            <Dashboard> </Dashboard>
+            
+        </div>
+        
       );
+
+
     }
   
     return <button className="btn btn-secondary"onClick={() => signIn()}>Sign in</button>;
