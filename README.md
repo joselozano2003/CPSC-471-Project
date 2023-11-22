@@ -1,56 +1,24 @@
-![Add a heading (13)](https://github.com/Chensokheng/next-supabase-dashboard/assets/52232579/8ffea2ac-0200-4bed-b87c-77d162d07b9e)
-
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), and implements [Next-Auth](https://next-auth.js.org) together with [Prisma](https://www.prisma.io)
 
 ## Getting Started
 
-First, install the dependencies
+First, clone the repository
 
 ```bash
-npm i
-```
-then run the development server:
+git clone https://github.com/joselozano2003/Next-Prisma-Auth-template.git
 
+```
+
+Then, Start the local environment
 
 ```bash
 npm run dev
 ```
 
-## Check list
--   [ ] setup supbase fill env.sample
--   [ ] create developer user
--   [ ] handle create user using service role
--   [ ] Prevent UI from none admin
--   [ ] update create user for only admin to create only
--   [ ] read user
--   [ ] update user
--   [ ] delete user
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Tables
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```sh
-permission_table:{
-    id: uuid,
-    role: text,
-    status: text, (active,resigned),
-    created_at: date,
-    member_id: uuid
-}
-```
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```sh
-member_table:{
-    id: uuid,
-    name: text,
-    created_at: date,
-}
-```
-
-```sh
-todo_table:{
-    id: uuid,
-    title: text,
-    completed: boolean,
-    created_at: date,
-    created_by: uuid (foreign_key member_id)
-}
-```
+# CPSC-471-Project
