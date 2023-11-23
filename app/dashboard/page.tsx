@@ -47,7 +47,7 @@ export default function Dashboard(props: Props) {
 
                 <div className="modal-wrapper"> 
                 
-                    <DashboardModals title="Medical Reports" description="View your medical reports" openModal={openModal}> </DashboardModals>
+                    <DashboardModals title="Medical Record" description="View your medical reports" openModal={openModal}> </DashboardModals>
                     <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals>
                     <DashboardModals title="Appointments" description="View your past and future appointments" openModal={openModal}> </DashboardModals>
                  </div>
