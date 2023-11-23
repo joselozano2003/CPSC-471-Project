@@ -2,9 +2,10 @@
 
 import DashboardModals from "./DashboardModals"
 import DashboardNavbar from "./DashboardNavbar";
+import DashboardInfo from "./DashboardInfo";
 
 import './page.css'
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
 
 
@@ -13,6 +14,20 @@ interface Props {
 }
 
 export default function Dashboard(props: Props) {
+
+
+    const [modalOpenState, setOpenModalState] = useState(false);
+    const [modalTitle, setModalTitle] = useState('');
+
+
+    const openModal = (title: SetStateAction<string>) => {
+        setModalTitle(title);
+        setOpenModalState(true);
+    }
+
+    const closeModel = () => {
+        setOpenModalState(false);
+    }
 
 
     return (
@@ -32,11 +47,18 @@ export default function Dashboard(props: Props) {
 
                 <div className="modal-wrapper"> 
                 
-                    <DashboardModals title="Medical Reports" description="View your medical reports"> </DashboardModals>
-                    <DashboardModals title="Prescriptions" description="View your past and current prescriptions"> </DashboardModals>
-                    <DashboardModals title="Appointments" description="View your past and future appointments"> </DashboardModals>
+                    <DashboardModals title="Medical Reports" description="View your medical reports" openModal={openModal}> </DashboardModals>
+                    <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals>
+                    <DashboardModals title="Appointments" description="View your past and future appointments" openModal={openModal}> </DashboardModals>
                  </div>
 
+
+                <div className="modal-clicked-container">
+
+                    {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
+
+
+                </div>
 
             </div>
             
