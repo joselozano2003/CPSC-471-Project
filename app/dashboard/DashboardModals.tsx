@@ -1,5 +1,5 @@
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
-import './DashboardNavbar.css'
+import './DashboardModals.css'
 
 
 interface Props {
@@ -7,10 +7,11 @@ interface Props {
     children: string
     title: string
     description: string
+    
 
 }
 
-export default function  DashBoardNavbar(props: Props) {
+export default function DashboardModals(props: Props) {
 
 
     return (

@@ -1,0 +1,24 @@
+.modal-container {
+    /* background-color: antiquewhite; */
+}
+
+.modal-wrapper {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+    
+
+}
+
+.h1-container {
+    
+    margin-top: 5%;
+    margin-left: 5%; 
+    margin-bottom: 2%;
+    font-size: 24px; 
+    font-weight: 700;
+}
