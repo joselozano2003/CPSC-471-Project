@@ -10,6 +10,8 @@ interface Props {
 export default function DashboardNavbar(props: Props) {
 
 
+
+
     return (
 
         <div className="navbar bg-neutral text-neutral-content">
@@ -23,8 +25,8 @@ export default function DashboardNavbar(props: Props) {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                <li><a> View Personal Information</a></li>
-                <li><a> Schedule an Appointment</a></li>
+                <li><a href="/dashboard"> View Personal Information</a></li>
+                <li><a href="/appointment"> Schedule an Appointment</a></li>
                 <li><a> Edit Personal Details </a></li>
                 </ul>
             </div>
