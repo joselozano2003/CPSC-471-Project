@@ -51,7 +51,7 @@ export default function Dashboard(props: Props) {
             <div className="modal-container">
 
                 <div className="h1-container">
-                <h1> Viewing Personal Information </h1>
+                <h1> View Personal Information </h1>
                 </div>
 
 
