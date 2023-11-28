@@ -3,6 +3,7 @@
 import DashboardModals from "./DashboardModals"
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardInfo from "./DashboardInfo";
+import medicalBackground from "public/medical-background.jpg"
 
 import './page.css'
 import { SetStateAction, useState } from 'react';
@@ -29,6 +30,14 @@ export default function Dashboard(props: Props) {
         setOpenModalState(false);
     }
 
+    const bgStyling = {
+        backgroundImage: `url(${medicalBackground.src})`,
+        backgroundSize : "100% auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+    
+    }
+
 
     return (
 
@@ -45,14 +54,19 @@ export default function Dashboard(props: Props) {
                 <h1> Viewing Personal Information </h1>
                 </div>
 
+
+
+                <div className="background-wrapper" style={bgStyling}>
+
                 <div className="modal-wrapper"> 
-                
+
+
                     <DashboardModals title="Medical Record" description="View your medical reports" openModal={openModal}> </DashboardModals>
                     <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals>
                     <DashboardModals title="Appointments" description="View your past and future appointments" openModal={openModal}> </DashboardModals>
-                 </div>
-
-
+                </div>
+                
+                </div>
                 <div className="modal-clicked-container">
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
@@ -76,3 +90,6 @@ export default function Dashboard(props: Props) {
 
 
 }
+
+// adjust for when buttons are pressed, it brings you down to the page
+// fix the modal wrapper make sure they're spaced evenly

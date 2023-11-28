@@ -17,7 +17,16 @@ const config: Config = {
   },
 
   daisyui: {
-    themes: ["light"],
+    themes: [
+      {
+        sunset: {
+          ...require("daisyui/src/theming/themes")["corporate"],
+          primary: "powderblue",
+          secondary: "teal",
+        },
+      },
+    ],
+    
   },
 
   plugins: [require("daisyui")],
