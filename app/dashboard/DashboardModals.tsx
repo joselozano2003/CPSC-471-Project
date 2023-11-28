@@ -29,11 +29,11 @@ export default function DashboardModals(props: Props) {
 
         
         <div className={`card w-96 ${modalColor} text-neutral-content`} onClick={handleModalOpen}>
-            <div className="card-body items-center text-center">
+            <button className="card-body items-center text-center">
                 <h2 className="card-title">{props.title}</h2>
                 <p>{props.description}</p>
                 
-            </div>
+            </button>
         </div>
         
 

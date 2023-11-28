@@ -24,7 +24,7 @@ export default function DashboardNavbar(props: Props) {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                 <li><a> View Personal Information</a></li>
-                
+                <li><a> Schedule an Appointment</a></li>
                 <li><a> Edit Personal Details </a></li>
                 </ul>
             </div>

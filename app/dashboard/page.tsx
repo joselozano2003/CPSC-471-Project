@@ -12,6 +12,7 @@ import { SetStateAction, useState } from 'react';
 
 interface Props {
     children: any
+    
 }
 
 export default function Dashboard(props: Props) {
