@@ -1,5 +1,5 @@
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import DatePicker, { Day, DayRange, DayValue } from "react-modern-calendar-datepicker";
+import "@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker, { DayValue } from "@hassanmojab/react-modern-calendar-datepicker";
 import { useState } from "react";
 import React from "react";
 import "./ApptScheduler.css"
@@ -15,12 +15,17 @@ export default function AppointmentScheduler() {
 
         <div className="container-center">
 
+            <label> Name: </label>
             <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" />
 
             
             
-            
+            <div className="calendar-container">
+
             <DatePicker value={day} onChange={setDay} />
+
+            </div>
+            
       
 
         </div>
