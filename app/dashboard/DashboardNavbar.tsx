@@ -26,7 +26,7 @@ export default function DashboardNavbar(props: Props) {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                 <li><a href="/dashboard"> View Personal Information</a></li>
-                <li><a href="/appointment"> DOCTOR DASHBOARD </a></li>
+                <li><a href="/doctor_dashboard"> DOCTOR DASHBOARD </a></li>
                 <li><a> Edit Personal Details </a></li>
                 </ul>
             </div>
