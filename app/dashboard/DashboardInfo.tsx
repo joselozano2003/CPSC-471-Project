@@ -15,6 +15,9 @@ interface Props {
 export default function DashboardInfo(props: Props) {
 
 
+    
+
+
     return (
 
 
@@ -24,6 +27,8 @@ export default function DashboardInfo(props: Props) {
 
             <DashboardTable> </DashboardTable>
             <button className="btn btn-primary" onClick={props.closeModal}>Close Modal</button>
+
+
         </div>  
 
     )

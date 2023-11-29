@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import DashboardNavbar from '../dashboard/DashboardNavbar'
 import ReactCalendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
 
 
 interface indexProps {} 
@@ -9,6 +10,10 @@ const index: FC<indexProps> = ({}) => {
     <div>
 
       <DashboardNavbar> </DashboardNavbar>
+      
+
+
+
       
       {/* <ReactCalendar 
         minDate = {new Date()}

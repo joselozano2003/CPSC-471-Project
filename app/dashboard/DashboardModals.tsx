@@ -22,7 +22,7 @@ export default function DashboardModals(props: Props) {
     //This is needed because otherwise onClick will error below 
     const handleModalOpen = () => {
         props.openModal(props.title);
-        // setModalColor("#0099ff");
+        
     };
 
     return (

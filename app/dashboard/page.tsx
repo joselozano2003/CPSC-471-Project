@@ -3,6 +3,7 @@
 import DashboardModals from "./DashboardModals"
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardInfo from "./DashboardInfo";
+import Appointment from "./Appointments/Appointment";
 import medicalBackground from "public/medical-background.jpg"
 
 import './page.css'
@@ -19,6 +20,7 @@ export default function Dashboard(props: Props) {
 
 
     const [modalOpenState, setOpenModalState] = useState(false);
+    const [showApptModal, setShowApptModal] = useState(false);
     const [modalTitle, setModalTitle] = useState('');
 
 
@@ -30,6 +32,17 @@ export default function Dashboard(props: Props) {
     const closeModel = () => {
         setOpenModalState(false);
     }
+
+
+    const apptClicked = () => {
+        setShowApptModal(true);
+    }
+
+    const closeAppt = () => {
+        setShowApptModal(false);
+    }
+
+
 
     const bgStyling = {
         backgroundImage: `url(${medicalBackground.src})`,
@@ -55,7 +68,7 @@ export default function Dashboard(props: Props) {
                 <h1> View Personal Information </h1>
                 </div>
 
-
+                
 
                 <div className="background-wrapper" style={bgStyling}>
 
@@ -64,15 +77,28 @@ export default function Dashboard(props: Props) {
 
                     <DashboardModals title="Medical Record" description="View your medical reports" openModal={openModal}> </DashboardModals>
                     <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals>
-                    <DashboardModals title="Appointments" description="View your past and future appointments" openModal={openModal}> </DashboardModals>
+                
+
+                    {/* MAKE THIS BUTTON OPEN UP THE APPOINTMENTS VIEW */}
+                    <div className="card w-96 bg-neutral text-neutral-content">
+                        <button className="card-body items-center text-center" onClick={apptClicked}>
+                            <h2 className="card-title">Appointments</h2>
+                            <p>Schedule/View your past and future appointments</p>
+                            
+                        </button>
+
+                        
+                    </div> 
+
+                    
+                    
                 </div>
                 
                 </div>
                 <div className="modal-clicked-container">
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-
-
+                    {showApptModal && (<Appointment closeAppt={closeAppt}></Appointment>)}
                 </div>
 
             </div>
