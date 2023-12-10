@@ -11,16 +11,12 @@ interface DoctorProps {
 
 export default function DoctorDashboard(props: DoctorProps) {
 
-  return (
-      <div>
-          <div className="navbar-container"> 
-              <DashboardNavbar> </DashboardNavbar>
-          </div>    
-          <Dash />
-      </div>
-
-  )
-
-
-
+    return (
+        <div>
+            <div className="navbar-container"> 
+                <DashboardNavbar> </DashboardNavbar>
+            </div>    
+            <Dash />
+        </div>
+    )
 }
