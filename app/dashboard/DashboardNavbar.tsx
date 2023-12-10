@@ -1,6 +1,3 @@
-'use client'
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
-// import { SignOutButton } from "@/components/buttons";
 import AuthButton from "@/components/AuthButton";
 import "./DashboardNavbar.css"
 
@@ -9,9 +6,6 @@ interface Props {
 }
 
 export default function DashboardNavbar(props: Props) {
-
-
-
 
     return (
 
