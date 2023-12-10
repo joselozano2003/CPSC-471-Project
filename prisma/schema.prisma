@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model AdministrativeStaff {
+  id          String        @id
+  staffId     String        @unique
+  Staff       Staff         @relation(fields: [staffId], references: [id])
+  Appointment Appointment[]
+  MedicalTest MedicalTest[]
+}
+
+model AppUser {
+  id                    String           @id
+  gender                String
+  address               String
+  email                 String           @unique
+  birthDate             DateTime
+  phone                 String
+  emergencyContactName  String
+  emergencyContactPhone String
+  InsurancePolicy       InsurancePolicy?
+  Patient               Patient?
+  Staff                 Staff?
+}
+
+model Appointment {
+  id                  String              @id
+  patientId           String
+  physicianId         String
+  startDate           DateTime
+  endDate             DateTime
+  adminId             String
+  location            String
+  notes               String
+  AdministrativeStaff AdministrativeStaff @relation(fields: [adminId], references: [id])
+  Patient             Patient             @relation(fields: [patientId], references: [id])
+  Physician           Physician           @relation(fields: [physicianId], references: [id])
+}
+
+model InsuranceCompany {
+  id              String            @id
+  name            String
+  address         String
+  contactInfo     Json
+  InsurancePolicy InsurancePolicy[]
+}
+
+model InsurancePolicy {
+  id                 Int              @id
+  expirationDate     DateTime
+  insuranceCompanyId String
+  coverageAmount     Float
+  userId             String           @unique
+  InsuranceCompany   InsuranceCompany @relation(fields: [insuranceCompanyId], references: [id])
+  AppUser            AppUser          @relation(fields: [userId], references: [id])
+}
+
+model MedicalRecord {
+  id            String          @id
+  patientId     String          @unique
+  physicianId   String
+  Patient       Patient         @relation(fields: [patientId], references: [id])
+  Physician     Physician       @relation(fields: [physicianId], references: [id])
+  MedicalReport MedicalReport[]
+}
+
+model MedicalReport {
+  id              String        @id
+  medicalRecordId String
+  medicalTestId   String
+  notes           String
+  treatment       String
+  diagnostics     String
+  date            DateTime
+  MedicalRecord   MedicalRecord @relation(fields: [medicalRecordId], references: [id])
+  MedicalTest     MedicalTest[]
+}
+
+model MedicalStaff {
+  id         String      @id
+  staffId    String      @unique
+  Staff      Staff       @relation(fields: [staffId], references: [id])
+  Nurse      Nurse?
+  Pharmacist Pharmacist?
+  Physician  Physician?
+}
+
+model MedicalTest {
+  id                  String              @id
+  name                String
+  patientId           String
+  physicianId         String
+  adminId             String
+  date                DateTime
+  location            String
+  medicalReportId     String
+  AdministrativeStaff AdministrativeStaff @relation(fields: [adminId], references: [id])
+  MedicalReport       MedicalReport       @relation(fields: [medicalReportId], references: [id])
+  Patient             Patient             @relation(fields: [patientId], references: [id])
+  Physician           Physician           @relation(fields: [physicianId], references: [id])
+}
+
+model Medication {
+  id                String              @id
+  name              String
+  description       String
+  sideEffects       String
+  dosage            String
+  price             Float
+  grams             Float
+  PharmacyInventory PharmacyInventory[]
+}
+
+model Nurse {
+  id           String       @id
+  staffId      String       @unique
+  department   String
+  MedicalStaff MedicalStaff @relation(fields: [staffId], references: [id])
+  Patient      Patient[]
+}
+
+model Patient {
+  id            String         @id
+  userId        String         @unique
+  height        Float?
+  weight        Float?
+  physicianId   String
+  Appointment   Appointment[]
+  MedicalRecord MedicalRecord?
+  MedicalTest   MedicalTest[]
+  Physician     Physician      @relation(fields: [physicianId], references: [id])
+  AppUser       AppUser        @relation(fields: [userId], references: [id])
+  Nurse         Nurse[]
+}
+
+model Pharmacist {
+  id           String       @id
+  staffId      String       @unique
+  pharmacyId   String
+  Pharmacy     Pharmacy     @relation(fields: [pharmacyId], references: [id])
+  MedicalStaff MedicalStaff @relation(fields: [staffId], references: [id])
+}
+
+model Pharmacy {
+  id                String              @id
+  name              String
+  address           String
+  phone             String
+  Pharmacist        Pharmacist[]
+  PharmacyInventory PharmacyInventory[]
+}
+
+model PharmacyInventory {
+  id           String     @id
+  pharmacyId   String
+  medicationId String
+  quantity     Int
+  Medication   Medication @relation(fields: [medicationId], references: [id])
+  Pharmacy     Pharmacy   @relation(fields: [pharmacyId], references: [id])
+}
+
+model Physician {
+  id            String          @id
+  staffId       String          @unique
+  specialty     String
+  department    String
+  Appointment   Appointment[]
+  MedicalRecord MedicalRecord[]
+  MedicalTest   MedicalTest[]
+  Patient       Patient[]
+  MedicalStaff  MedicalStaff    @relation(fields: [staffId], references: [id])
+}
+
+model Staff {
+  id                  String               @id
+  userId              String               @unique
+  isVolunteer         Boolean
+  AdministrativeStaff AdministrativeStaff?
+  MedicalStaff        MedicalStaff?
+  AppUser             AppUser              @relation(fields: [userId], references: [id])
+}
+
