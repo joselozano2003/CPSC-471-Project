@@ -2,7 +2,6 @@
 
 import React, { FC } from 'react'
 import DashboardNavbar from '../dashboard/DashboardNavbar'
-import ReactCalendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import doctorDashboardBanner from "public/doctor-dashboard.jpg";
 import InnerPageBanner from './InnerPageBanner';
