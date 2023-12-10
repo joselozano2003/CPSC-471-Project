@@ -3,6 +3,8 @@ import { db } from "@/utils/prisma"
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { isUserComplete } from "@/utils/roles/route"
+import FirstTimeForm from "./Forms/FirstTimeForm"
 
 
 
@@ -20,15 +22,7 @@ export default async function Page(){
 
     const userEmail = user.email
 
-    const userExists = await db.appUser.findUnique({
-        where: {
-            email: userEmail
-        },
-        select: {
-            Patient: true,
-            Staff: true,
-        }
-    })
+    const userExists = await isUserComplete(userEmail!)
 
     console.log(userExists)
 
@@ -43,8 +37,10 @@ export default async function Page(){
 
 function FirstTimeUser() {
     return (
-        <div>
-            <h1>First Time User</h1>
+        <div className="flex flex-col justify-center items-center m-5 text-center">
+            <h1 className="text-2xl font-bold">First Time User</h1>
+            <h2>Please complete your profile to function the app</h2>
+            <FirstTimeForm />
         </div>
     )
 }
