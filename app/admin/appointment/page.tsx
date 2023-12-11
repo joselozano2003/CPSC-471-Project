@@ -6,6 +6,9 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { isAdmin, isUserComplete } from "@/utils/roles/route"
 import Link from "next/link"
+import BackButton from "@/components/BackButton"
+import App from "next/app"
+import AppointmentForm from "./AppointmentForm"
 
 export default async function Page() {
 
@@ -29,20 +32,10 @@ export default async function Page() {
     }
 
     return (
-        <div className="m-5 flex flex-col justify-center items-center">
-            <h1 className="m-5 font-bold text-3xl text-center">Admin</h1>
-            <div className="flex flex-row justify-around w-[50%]">
-                <Link href={"/admin/registerPatient"}>
-                    <button className="btn btn-primary">
-                        Register Patient
-                    </button>
-                </Link>
-                <Link href={"/admin/appointment"}>
-                    <button className="btn btn-primary">
-                        Make Appointment
-                    </button>
-                </Link>
-            </div>
+        <div>
+            <BackButton href="/admin" />
+            <h1 className="m-5 font-bold text-3xl text-center">Appointments</h1>
+            <AppointmentForm adminEmail={userEmail!}/>
         </div>
     )
 }

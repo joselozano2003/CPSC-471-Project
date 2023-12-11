@@ -37,7 +37,7 @@ model AppUser {
 }
 
 model Appointment {
-  id                  String              @id
+  id                  Int              @id @default(autoincrement())
   patientId           Int
   physicianId         String
   startDate           DateTime
