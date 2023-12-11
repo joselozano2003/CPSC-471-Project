@@ -14,10 +14,6 @@ interface Props {
 
 export default function DashboardInfo(props: Props) {
 
-
-    
-
-
     return (
 
 
