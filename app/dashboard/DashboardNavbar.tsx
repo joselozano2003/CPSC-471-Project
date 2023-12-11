@@ -18,9 +18,6 @@ export default async function DashboardNavbar({ userEmail }: Props) {
 
     console.log(userData)
 
-    console.log(userData?.isPatient)
-    console.log(userData?.isStaff)
-
     return (
 
         <div className="navbar bg-neutral text-neutral-content">
