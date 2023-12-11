@@ -10,7 +10,7 @@ import InnerPageBanner from './InnerPageBanner';
 import DashboardInfo from '../dashboard/DashboardInfo';
 import Appointment from '../dashboard/Appointments/Appointment';
 
-// import Dash from './Dash'; THIS WAS THE MERGE CONFLICT I JUST COMMENTED IT OUT 
+import Dash from './Dash';
 
 
 import { cookies } from 'next/headers'
