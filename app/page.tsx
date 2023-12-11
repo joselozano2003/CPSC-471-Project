@@ -2,7 +2,7 @@ import { SignInButton, SignOutButton } from '@/components/buttons'
 import Image from 'next/image'
 import Link from 'next/link'
 import './pages.css'
-import homepageBackground from "public/medical-banner.jpg" // medical-banner.png : Image by <a href="https://www.freepik.com/free-photo/medical-banner-with-doctor-working-laptop_30555907.htm#query=healthcare&position=2&from_view=search&track=sph&uuid=9c095130-d8a5-450b-8847-30346a22881b">Freepik</a>
+import homepageBackground from "public/medical-banner.jpg" // Image by <a href="https://www.freepik.com/free-photo/medical-banner-with-doctor-working-laptop_30555907.htm#query=healthcare&position=2&from_view=search&track=sph&uuid=9c095130-d8a5-450b-8847-30346a22881b">Freepik</a>
 import Header from '@/components/Header'
 import Banner from '@/components/Banner'
 
