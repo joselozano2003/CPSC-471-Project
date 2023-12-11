@@ -55,11 +55,6 @@ export default function InnerPageBanner(props: BannerProps) {
       <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals>
       <DashboardModals title="Scheduled Appointments" description="View your schedule" openModal={openModal}> </DashboardModals>
       </div>
-      <div className="modal-clicked-container">
-
-        {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-        {showApptModal && (<Appointment closeAppt={closeAppt}></Appointment>)}
-        </div>
       </div>
   )
 }

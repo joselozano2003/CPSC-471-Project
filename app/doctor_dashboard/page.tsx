@@ -2,7 +2,16 @@
 
 
 import DashboardNavbar from '../dashboard/DashboardNavbar'
-import Dash from './Dash';
+
+import ReactCalendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
+import doctorDashboardBanner from "public/doctor-dashboard.jpg"; // <a href="https://www.freepik.com/free-photo/stethoscope-prescription-laptop_1129629.htm#query=healthcare&position=32&from_view=search&track=sph&uuid=9c095130-d8a5-450b-8847-30346a22881b">Image by jannoon028</a> on Freepik
+import InnerPageBanner from './InnerPageBanner';
+import DashboardInfo from '../dashboard/DashboardInfo';
+import Appointment from '../dashboard/Appointments/Appointment';
+
+// import Dash from './Dash'; THIS WAS THE MERGE CONFLICT I JUST COMMENTED IT OUT 
+
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
