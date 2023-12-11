@@ -8,13 +8,16 @@ import medicalBackground from "@/public/medical-background.jpg"
 import DashboardModals from "./DashboardModals"
 import Appointment from "./Appointments/Appointment";
 import DashboardInfo from "./DashboardInfo";
+import Insurance from './Insurance';
 
 export default function Dash(){
     const [modalOpenState, setOpenModalState] = useState(false);
+    const [showInsuranceState, setShowInsuranceState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
     const [modalTitle, setModalTitle] = useState('');
 
 
+    
     const openModal = (title: SetStateAction<string>) => {
         setModalTitle(title);
         setOpenModalState(true);
@@ -33,6 +36,14 @@ export default function Dash(){
         setShowApptModal(false);
     }
 
+
+    const insuranceClicked = () => (
+        setShowInsuranceState(true)
+    )
+
+    const closeInsurance = () => {
+        setShowInsuranceState(false)
+    }
 
 
     const bgStyling = {
@@ -73,6 +84,16 @@ export default function Dash(){
                         
                     </div> 
 
+                    <div className="card w-96 bg-neutral text-neutral-content">
+                        <button className="card-body items-center text-center" onClick={insuranceClicked}>
+                            <h2 className="card-title"> Insurance </h2>
+                            <p> View your insurance </p>
+                            
+                        </button>
+
+                        
+                    </div> 
+
                     
                     
                 </div>
@@ -82,7 +103,11 @@ export default function Dash(){
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
                     {showApptModal && (<Appointment closeAppt={closeAppt}></Appointment>)}
+                    {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
+
                 </div>
+
+
 
             </div>
             
