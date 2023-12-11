@@ -11,9 +11,6 @@ export async function isUserComplete(email: string) {
         }
     })
 
-    console.log(user)
-
-    
     if (!user) {
         return false
     }
@@ -26,4 +23,19 @@ export async function isUserComplete(email: string) {
 
     return false
     
+}
+
+
+export async function isAdmin(email: string) {
+    const user = await db.administrativeStaff.findUnique({
+        where: {
+            id: email
+        }
+    })
+
+    if (!user) {
+        return false
+    }
+
+    return true
 }

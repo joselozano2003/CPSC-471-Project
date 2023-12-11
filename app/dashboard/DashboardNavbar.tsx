@@ -17,6 +17,7 @@ export default async function DashboardNavbar({ userEmail }: Props) {
     })
 
     console.log(userData)
+    console.log(userData?.isStaff)
 
     return (
 
@@ -31,11 +32,9 @@ export default async function DashboardNavbar({ userEmail }: Props) {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    {/* {userData?.isPatient ?? <li><a href="/dashboard"> View Personal Information</a></li>}
-                    {userData?.isStaff ?? <li><a href="/doctor_dashboard"> DOCTOR DASHBOARD </a></li>} */}
-
+                    
                     <li><a href="/dashboard"> View Personal Information</a></li>
-                    {userData?.isStaff ?? <li><a href="/doctor_dashboard"> DOCTOR DASHBOARD </a></li>}
+                    {userData?.isStaff && <li><a href="/doctor_dashboard"> DOCTOR DASHBOARD </a></li>}
                     <li><Link href={'/personal'}> Edit Personal Details </Link></li>
                 </ul>
             </div>

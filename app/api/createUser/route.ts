@@ -7,8 +7,6 @@ export async function POST(request: NextRequest) {
 
     const { userEmail, firstName, lastName, phone, address, birthDate, emergencyName, emergencyPhone, sex, isPatient, isStaff} = data;
 
-    console.log(data)
-
     // Check if entry exists
     const user = await db.appUser.findUnique({
         where: {
@@ -16,11 +14,9 @@ export async function POST(request: NextRequest) {
         }
     })
 
-    console.log(user)
-
+    // If entry does not exist, create new entry
     if (!user) {
         // Create new entry
-        console.log("Creating new entry")
         const createUser = await db.appUser.create({
             data: {
                 id: userEmail,
@@ -65,8 +61,6 @@ export async function POST(request: NextRequest) {
                 isStaff: isStaff
             }
         })
-
-        console.log(modifyUser)
 
         if (!modifyUser) {
             return NextResponse.json({error: "Error modifying user", status: 500})
