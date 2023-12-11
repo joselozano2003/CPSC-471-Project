@@ -2,41 +2,25 @@
 
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { AppUser } from "@prisma/client";
 
 interface Props {
-    userEmail: string
+    userData: AppUser
 }
 
-export default function FirstTimeForm({ userEmail }: Props) {
+export default function ExistingUserForm({ userData }: Props) {
+
+    console.log(userData)
 
     const [gender, setGender] = useState('');
+
+    useEffect(() => {
+        setGender(userData.gender ?? '')
+    },[])
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setGender(event.target.value);
     };
-
-    const [selectedOption, setSelectedOption] = useState('');
-
-    const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedOption(event.target.value);
-    };
-
-
-    // TODO: Add extra fields for staff account for security purposes
-    // const [showExtra, setShowExtra] = useState(false)
-
-    // useEffect(() => {
-    //     console.log(selectedOption)
-    //     if (selectedOption === 'Staff Account') {
-    //         setShowExtra(true)
-    //     }
-    //     else {
-    //         setShowExtra(false)
-    //     }
-        
-    // }, [selectedOption])
-
-
 
     const modifyProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -58,25 +42,8 @@ export default function FirstTimeForm({ userEmail }: Props) {
         const emergencyPhone = formData.get('emergencyPhone')
         const sex = gender
 
-        let isPatient, isStaff;
-
-        if (selectedOption === 'Patient') {
-            isPatient = true
-            isStaff = false
-        }
-
-        else if (selectedOption === 'Staff Account') {
-            isPatient = false
-            isStaff = true
-        }
-
-        else {
-            toast.error('Please select an option')
-            window.location.reload()
-        }
-
         const body = {
-            userEmail,
+            userEmail: userData.id,
             firstName,
             lastName,
             address,
@@ -85,8 +52,8 @@ export default function FirstTimeForm({ userEmail }: Props) {
             emergencyName,
             emergencyPhone,
             sex,
-            isPatient,
-            isStaff
+            isPatient: userData.isPatient,
+            isStaff: userData.isStaff,
         }
         
         console.log(body)
@@ -103,7 +70,7 @@ export default function FirstTimeForm({ userEmail }: Props) {
 
         if (res.status === 200) {
             //reload page
-            toast.success('Profile created successfully')
+            toast.success('User data updated successfully')
             window.location.reload()
         }
 
@@ -120,28 +87,28 @@ export default function FirstTimeForm({ userEmail }: Props) {
                 <div className="flex flex-row [&>*]:m-2 justify-center items-center">
                     <div>
                         <label className="font-bold" htmlFor="name">First Name</label>
-                        <input type="text" name="name" className="input input-bordered w-full max-w-xs my-2 text-center" required={true}/>
+                        <input type="text" name="name" className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.firstName ?? ""}/>
                     </div>
                     <div>
                         <label className="font-bold" htmlFor="name2">Last Name</label>
-                        <input type="text" name='name2' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
+                        <input type="text" name='name2' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.lastName ?? ""}/>
                     </div>
                 </div>
                 <div className="flex flex-row justify-center items-center [&>*]:m-2">
                     <div>
                         <label className="font-bold" htmlFor="address">Address</label>
-                        <input type="text" name='address' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
+                        <input type="text" name='address' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.address ?? ""}/>
                     </div>
                     <div>
                         <label className="font-bold" htmlFor="birthDate">Birth Date</label>
-                        <input type="date" name='birthDate' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
+                        <input type="date" name='birthDate' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.birthDate ? userData.birthDate.toISOString().slice(0, 10) : ''}/>
                         {/*Add ur own calendar if U want*/}
                     </div>
                 </div>
                 <div className="flex flex-row justify-center items-center [&>*]:m-2">
                     <div>
                         <label className="font-bold" htmlFor="phone">Phone Number</label>
-                        <input type="tel" name='phone' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
+                        <input type="tel" name='phone' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.phone}/>
                     </div>
                     <div className="flex flex-col">
                         <label className="font-bold" htmlFor="sex">Sex</label>
@@ -157,42 +124,14 @@ export default function FirstTimeForm({ userEmail }: Props) {
                     <div className="flex flex-row justify-center items-center [&>*]:m-2">
                         <div>
                             <label className="font-bold" htmlFor="emergencyName">Name</label>
-                            <input type="text" name='emergencyName' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
+                            <input type="text" name='emergencyName' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.emergencyContactName}/>
                         </div>
 
                        <div>  
                             <label className="font-bold" htmlFor="emergencyPhone">Phone Number</label>
-                            <input type="tel" name='emergencyPhone' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
+                            <input type="tel" name='emergencyPhone' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} defaultValue={userData.emergencyContactPhone}/>
                        </div>
                     </div>
-                </div>
-                <div>
-                <div className="form-control">
-                    <label className="label cursor-pointer">
-                    <span className="label-text">Patient</span>
-                    <input
-                        type="radio"
-                        name="radio-10"
-                        className="radio checked:bg-red-500"
-                        value="Patient"
-                        checked={selectedOption === 'Patient'}
-                        onChange={handleChange2}
-                    />
-                    </label>
-                </div>
-                <div className="form-control">
-                    <label className="label cursor-pointer">
-                    <span className="label-text">Staff Account</span>
-                    <input
-                        type="radio"
-                        name="radio-10"
-                        className="radio checked:bg-blue-500"
-                        value="Staff Account"
-                        checked={selectedOption === 'Staff Account'}
-                        onChange={handleChange2}
-                    />
-                    </label>
-                </div>
                 </div>
                 <button className="btn-primary btn mt-5 text-white" type="submit">Finish User Registration</button>
             </form>
