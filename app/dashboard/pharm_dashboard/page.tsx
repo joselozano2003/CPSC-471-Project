@@ -25,7 +25,7 @@ interface DoctorProps {
   
 }
 
-export default async function DoctorDashboard(props: DoctorProps) {
+export default async function PharmacyDashboard() {
 
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
