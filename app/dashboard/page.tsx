@@ -10,13 +10,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { isUserComplete } from "@/utils/roles/route";
 
-
-interface Props {
-    children: any
-    
-}
-
-export default async function Dashboard(props: Props) {
+export default async function Dashboard() {
 
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
@@ -43,8 +37,6 @@ export default async function Dashboard(props: Props) {
         }
     })
 
-    console.log(patientData)
-
     let flag = true
     let appointmentData
     if (patientData.length === 0) {
@@ -57,12 +49,8 @@ export default async function Dashboard(props: Props) {
                 patientId: patientData[0].id
             }
         })
-
-        console.log(appointmentData)
     }
 
-
-    
     return (
         <div>
             <div className="navbar-container"> 

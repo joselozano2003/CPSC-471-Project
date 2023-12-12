@@ -9,7 +9,6 @@ import DashboardModals from "./DashboardModals"
 import Appointment from "./Appointments/Appointment";
 import DashboardInfo from "./DashboardInfo";
 import Insurance from './Insurance/Insurance';
-import { Appointment as Appointments} from '@prisma/client';
 
 interface Props {
     appointmentData: any
@@ -20,9 +19,7 @@ export default function Dash({ appointmentData }: Props) {
     const [showInsuranceState, setShowInsuranceState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
     const [modalTitle, setModalTitle] = useState('');
-
-
-    
+ 
     const openModal = (title: SetStateAction<string>) => {
         setModalTitle(title);
         setOpenModalState(true);
@@ -31,7 +28,6 @@ export default function Dash({ appointmentData }: Props) {
     const closeModel = () => {
         setOpenModalState(false);
     }
-
 
     const apptClicked = () => {
         setShowApptModal(true);
@@ -50,7 +46,6 @@ export default function Dash({ appointmentData }: Props) {
         setShowInsuranceState(false)
     }
 
-
     const bgStyling = {
         backgroundImage: `url(${medicalBackground.src})`,
         backgroundSize : "100% auto",
@@ -62,60 +57,36 @@ export default function Dash({ appointmentData }: Props) {
     return (
 
         <div className="modal-container">
-
-                <div className="h1-container">
+            <div className="h1-container">
                 <h1> View Personal Information </h1>
-                </div>
-
-                
-
-                <div className="background-wrapper" style={bgStyling}>
-
+            </div>
+            <div className="background-wrapper" style={bgStyling}>
                 <div className="modal-wrapper"> 
-
-
                     <DashboardModals title="Medical Record" description="View your medical reports" openModal={openModal}> </DashboardModals>
                     <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals>
-                
-
                     {/* MAKE THIS BUTTON OPEN UP THE APPOINTMENTS VIEW */}
                     <div className="card w-96 bg-neutral text-neutral-content">
                         <button className="card-body items-center text-center" onClick={apptClicked}>
                             <h2 className="card-title">Appointments</h2>
                             <p>Schedule/View your past and future appointments</p>
-                            
-                        </button>
-
-                        
+                        </button>      
                     </div> 
 
                     <div className="card w-96 bg-neutral text-neutral-content">
                         <button className="card-body items-center text-center" onClick={insuranceClicked}>
                             <h2 className="card-title"> Insurance </h2>
                             <p> View your insurance </p>
-                            
                         </button>
-
-                        
                     </div> 
-
-                    
-                    
                 </div>
-                
-                </div>
-                <div className="modal-clicked-container">
+            </div>
+            <div className="modal-clicked-container">
 
-                    {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {showApptModal && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
-                    {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
-
-                </div>
-
-
+                {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
+                {showApptModal && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
+                {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
 
             </div>
-            
-            
+        </div>
     )
 }

@@ -10,8 +10,6 @@ interface Props {
 
 export default function ExistingUserForm({ userData }: Props) {
 
-    console.log(userData)
-
     const [gender, setGender] = useState('');
 
     useEffect(() => {
@@ -133,7 +131,7 @@ export default function ExistingUserForm({ userData }: Props) {
                        </div>
                     </div>
                 </div>
-                <button className="btn-primary btn mt-5 text-white" type="submit">Finish User Registration</button>
+                <button className="btn-primary btn mt-5 text-white" type="submit">Edit User</button>
             </form>
         </div>
     )
