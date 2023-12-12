@@ -14,7 +14,7 @@ interface DashProps {
     appointmentData: Appointments[]
 }
 
-export default function Dash({ appointmentData }: DashProps) {
+export default function Dash() {
 
     const [modalOpenState, setOpenModalState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
@@ -87,9 +87,9 @@ export default function Dash({ appointmentData }: DashProps) {
                 <div className="modal-clicked-container">
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
-                </div>
-
+                    {/* {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
+                </div> */}
+                </div> 
             </div>
     )
 }

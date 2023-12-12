@@ -65,7 +65,7 @@ export default async function DoctorDashboard(props: DoctorProps) {
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>    
-            <Dash appointmentData={appointmentData}/>
+            {/* <Dash appointmentData={appointmentData}/> */}
         </div>
     )
 }
