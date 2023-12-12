@@ -65,7 +65,7 @@ export default async function PharmacyDashboard() {
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>    
-            {/* <Dash appointmentData={appointmentData}/> */}
+            <Dash/>
         </div>
     )
 }

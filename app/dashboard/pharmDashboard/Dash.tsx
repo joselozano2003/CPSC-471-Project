@@ -57,7 +57,7 @@ export default function Dash() {
         <div className="modal-container">
 
                 
-                
+            <p> test </p> 
 
             <div className="background-wrapper" style={bgStyling}>
 
@@ -75,7 +75,7 @@ export default function Dash() {
                             <p>Schedule/View your schedule</p>
                             
                         </button>
-
+                        
                         
                     </div> 
 
