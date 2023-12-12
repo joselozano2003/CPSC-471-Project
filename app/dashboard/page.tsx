@@ -9,6 +9,8 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
 import { isUserComplete } from "@/utils/roles/route";
+import Link from "next/link";
+import xrayBackground from "@/public/x-ray-scan.jpg";
 
 export default async function Dashboard() {
 
@@ -51,12 +53,49 @@ export default async function Dashboard() {
         })
     }
 
+
+    const bgStyling = {
+        backgroundImage: `url(${xrayBackground.src})`,
+        backgroundSize : "100% auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "60vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        
+    }
+
     return (
         <div>
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>
-            { flag ? <Dash appointmentData={appointmentData}/> : <div className="m-5 flex justify-center items-center"><h1 className="text-center font-bold text-2xl">Not a patient</h1></div>}
+            { flag ? <Dash appointmentData={appointmentData}/> : 
+           
+            <div className="modal-container">
+            <h1 className="m-5 font-bold text-3xl text-center">Not a Patient (staff version )</h1>
+            <div className="background-wrapper" style={bgStyling}>
+            <div className="flex flex-row justify-around w-[50%]">
+                <Link href={"/admin"}>
+                    <button className="btn btn-primary text-lg py-2 px-4">
+                        Admin
+                    </button>
+                </Link>
+                <Link href={"/doctor_dashboard"}>
+                    <button className="btn btn-primary text-lg py-2 px-4">
+                        Doctor
+                    </button>
+                </Link>
+                <Link href={"/dashboard/pharmDashboard"}>
+                    <button className="btn btn-primary text-lg py-2 px-4">
+                        Pharmacy
+                    </button>
+                </Link>
+            </div>
+            </div>
+        </div>}
+
         </div>
     )
 }

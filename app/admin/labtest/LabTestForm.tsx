@@ -99,11 +99,11 @@ export default function LabTestForm({ adminEmail}: Props) {
                 </div>
                 <div className="flex flex-row justify-center gap-6">    
                     <div className="flex flex-col">
-                        <label className="font-bold" htmlFor="date">Purpose</label>
+                        <label className="font-bold" htmlFor="date">Purpose of Test</label>
                         <textarea name="notes" className="textarea h-24 textarea-bordered w-full max-w-xs my-2 text-center" required={false} />
                     </div>
                     <div className="flex flex-col">
-                        <label className="font-bold" htmlFor="date">Special Instructions</label>
+                        <label className="font-bold" htmlFor="date">Additional Instructions</label>
                         <textarea name="notes" className="textarea h-24 textarea-bordered w-full max-w-xs my-2 text-center" required={false} />
                     </div>
                     <div>
@@ -112,17 +112,13 @@ export default function LabTestForm({ adminEmail}: Props) {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                    <label className="font-bold" htmlFor="date">Appointment Date</label>
+                    <label className="font-bold" htmlFor="date">Test Date</label>
                     <input type="date" name="date" className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
                 </div>
                 <div className="flex flex-row [&>*]:m-2 justify-center items-center">
                     <div>
-                        <label className="font-bold" htmlFor="time1">Appointment Time</label>
+                        <label className="font-bold" htmlFor="time1">Test Time</label>
                         <input type="time" name="time1" className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
-                    </div>
-                    <div>
-                        <label className="font-bold" htmlFor="time2">Appointment End</label>
-                        <input type="time" name='time2' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
                     </div>
                 </div>
                 <button className="btn-primary btn mt-5 text-white" type="submit">Register Lab Test</button>
