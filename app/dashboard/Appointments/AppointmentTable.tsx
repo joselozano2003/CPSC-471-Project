@@ -1,6 +1,12 @@
+import { Appointment } from "@prisma/client"
+interface AppointmentTableProps {
+    data: Appointment[];
+}
 
-export default function AppointmentTable() {
+export default function AppointmentTable({ data }: AppointmentTableProps) {
 
+
+    console.log(data)
     return (
         <div className="overflow-x-auto">
                 
@@ -23,7 +29,9 @@ export default function AppointmentTable() {
                 </thead>
                 <tbody>
                 {/* row 1 */}
-                <tr>
+
+                {data.map((appointment) => (
+                    <tr>
                     <th>
                     <label>
                         <input type="checkbox" className="checkbox" />
@@ -32,27 +40,29 @@ export default function AppointmentTable() {
                     <td>
                     <div className="flex items-center gap-3">
                         <div>
-                        <div className="font-bold">123123123</div>
+                        <div className="font-bold">{appointment.id}</div>
                         
                         </div>
                     </div>
                     </td>
                     <td>
-                        Nov 28, 2023
+                       {appointment.startDate.toDateString()}
                     <br/>
                     
                     </td>
                     <td>
-                        Hospital Room
+                        {appointment.location}
                     </td>
                     <th>
                     <button className="btn btn-ghost btn-xs"> Details</button>
                     </th>
                     <td>
-                        11:00AM - 12:00PM
+                        {appointment.startDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} - {appointment.endDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                     </td>
                     
                 </tr>
+                ))}
+                
 
                 </tbody>
             </table>

@@ -8,8 +8,13 @@ import Appointment from '../dashboard/Appointments/Appointment';
 
 import { SetStateAction, useState } from 'react';
 import DashboardModals from '../dashboard/DashboardModals';
+import { Appointment as Appointments} from '@prisma/client';
 
-export default function Dash() {
+interface DashProps {
+    appointmentData: Appointments[]
+}
+
+export default function Dash({ appointmentData }: DashProps) {
 
     const [modalOpenState, setOpenModalState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
@@ -82,7 +87,7 @@ export default function Dash() {
                 <div className="modal-clicked-container">
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {showApptModal && (<Appointment closeAppt={closeAppt}></Appointment>)}
+                    {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
                 </div>
 
             </div>

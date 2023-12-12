@@ -18,6 +18,7 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
 import { isUserComplete } from "@/utils/roles/route";
+import { db } from '@/utils/prisma';
 
 interface DoctorProps {
   children: any
@@ -40,6 +41,20 @@ export default async function DoctorDashboard(props: DoctorProps) {
     const userEmail = user.email
 
     const userExists = await isUserComplete(userEmail!)
+
+    const patientData = await db.patient.findMany({
+        where: {
+            userId: userEmail
+        }
+    })
+
+    const appointmentData = await db.appointment.findMany({
+        where: {
+            physicianId: userEmail
+        }
+    })
+
+    console.log(appointmentData)
     
     if (!userExists) {
         return redirect('/personal')
@@ -50,7 +65,7 @@ export default async function DoctorDashboard(props: DoctorProps) {
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>    
-            <Dash />
+            <Dash appointmentData={appointmentData}/>
         </div>
     )
 }
