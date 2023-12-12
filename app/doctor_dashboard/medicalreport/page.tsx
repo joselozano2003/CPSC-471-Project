@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { isDoctor, isUserComplete } from "@/utils/roles/route";
 import { db } from '@/utils/prisma';
-import CreateMedicalRecordForm from './CreateMedicalRecordForm';
+import MedicalReportForm from './MedicalReportForm';
 import BackButton from '@/components/BackButton';
 
 export default async function Page() {
@@ -29,10 +29,8 @@ export default async function Page() {
     }
 
     return (
-        <div className='flex flex-col justify-center items-center p-7'>
-            <BackButton href={'/doctor_dashboard'}/>
-            <h1 className='font-bold text-2xl'>Create Medical Record</h1>
-            <CreateMedicalRecordForm doctorEmail={userEmail}/>
+        <div>
+            <MedicalReportForm adminEmail=''/>
         </div>
-    )    
+    )
 }
