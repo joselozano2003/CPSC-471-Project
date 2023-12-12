@@ -16,6 +16,7 @@ export default function MedicalReportForm({ adminEmail}: Props) {
         const treatment = formData.get('treatment')
         const diagnostic = formData.get('diagnostic')
         const date = formData.get('date')
+        
 
         let notes;
         if (formData.get('notes')){
@@ -54,6 +55,10 @@ export default function MedicalReportForm({ adminEmail}: Props) {
 
         if (data.error) {
             toast.error(data.error)
+            return
+        }
+        else if (data.status == 404){
+            toast.error(data.message)
             return
         }
         else if (data.status == 500){

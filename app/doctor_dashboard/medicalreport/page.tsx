@@ -30,6 +30,7 @@ export default async function Page() {
 
     return (
         <div>
+            <BackButton href={'/doctor_dashboard'}/>
             <MedicalReportForm adminEmail=''/>
         </div>
     )

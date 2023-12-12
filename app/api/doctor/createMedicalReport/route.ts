@@ -7,6 +7,17 @@ export async function POST(request: NextRequest) {
 
     const {recordId, testId, notes, treatment, diagnostic, appointment} = data;
 
+    const record = await db.medicalRecord.findUnique({
+        where: {
+            id: Number(recordId)
+        }
+    })
+
+    if (!record) {
+        console.log("Record not found");
+        return NextResponse.json({ status: 404, message: 'Medical record not found' });
+    }
+
     console.log(data);
 
     if (!diagnostic) {

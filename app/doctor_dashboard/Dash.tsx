@@ -56,7 +56,7 @@ export default function Dash({ appointmentData }: DashProps) {
 
     return (
         <div className="modal-container">
-            <div className="background-wrapper" style={bgStyling}>
+            <div className="background-wrapper flex flex-col [&>*]:p-5" style={bgStyling}>
                 <div className="modal-wrapper" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '50px'}}> 
                     <DashboardModals title="Medical Report" description="View patients' medical reports" openModal={openModal} > </DashboardModals>
                     <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals>
