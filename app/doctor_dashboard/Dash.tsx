@@ -11,6 +11,8 @@ import DashboardModals from '../dashboard/DashboardModals';
 import { Appointment as Appointments} from '@prisma/client';
 import Link from 'next/link';
 
+import MedicalReportForm from './medicalreport/MedicalReportForm';
+
 interface DashProps {
     appointmentData: Appointments[]
 }
@@ -79,9 +81,19 @@ export default function Dash({ appointmentData }: DashProps) {
                         <button className="card-body items-center text-center" onClick={apptClicked}>
                             <h2 className="card-title">Scheduled Appointments</h2>
                             <p>Schedule/View your schedule</p>
-                            
                         </button>
+
                     </div>  */}
+
+                    </div> 
+                    <div className="card w-96 bg-neutral text-neutral-content">
+                        <Link href={"./doctor_dashboard/medicalreport"}>
+                        <h2 className="card-title">Create Medical Report</h2>
+                        </Link>
+                    </div> 
+                    
+            
+    
                 </div>
                 
                 </div>
