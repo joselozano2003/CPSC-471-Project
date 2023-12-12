@@ -39,3 +39,19 @@ export async function isAdmin(email: string) {
 
     return true
 }
+
+
+export async function isDoctor(email: string) {
+
+    const user = await db.physician.findUnique({
+        where: {
+            id: email
+        }
+    })
+
+    if (!user) {
+        return false
+    }
+
+    return true
+}

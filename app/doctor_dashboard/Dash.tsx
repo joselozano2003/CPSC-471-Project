@@ -9,6 +9,7 @@ import Appointment from '../dashboard/Appointments/Appointment';
 import { SetStateAction, useState } from 'react';
 import DashboardModals from '../dashboard/DashboardModals';
 import { Appointment as Appointments} from '@prisma/client';
+import Link from 'next/link';
 
 interface DashProps {
     appointmentData: Appointments[]
@@ -67,15 +68,20 @@ export default function Dash({ appointmentData }: DashProps) {
                     <DashboardModals title="Medical Report" description="View patients' medical reports" openModal={openModal} > </DashboardModals>
                     <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals>
                 
+                    <div className="card w-96 bg-neutral text-neutral-content text-center">
+                        <Link href={"/doctor_dashboard/createMedicalRecord"}>
+                            <h2 className="card-title">Create/Edit Medical Record</h2>
+                            <p className='text-center'>Create/Edit Record for Patient</p>
+                        </Link>
+                    </div> 
 
-                    {/* MAKE THIS BUTTON OPEN UP THE APPOINTMENTS VIEW */}
-                    <div className="card w-96 bg-neutral text-neutral-content">
+                    {/* <div className="card w-96 bg-neutral text-neutral-content">
                         <button className="card-body items-center text-center" onClick={apptClicked}>
                             <h2 className="card-title">Scheduled Appointments</h2>
                             <p>Schedule/View your schedule</p>
                             
                         </button>
-                    </div> 
+                    </div>  */}
                 </div>
                 
                 </div>
