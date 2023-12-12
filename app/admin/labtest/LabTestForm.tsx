@@ -24,10 +24,8 @@ export default function LabTestForm({ adminEmail}: Props) {
             notes = ''
         }
 
-
         const location = formData.get('location')
         const date = formData.get('date')
-
 
         if (!userEmail || !docEmail || !appointmentStart || !appointmentEnd || !location || !date) {
             toast.error('Please fill in all fields')
@@ -49,38 +47,40 @@ export default function LabTestForm({ adminEmail}: Props) {
 
         console.log(userEmail, docEmail, notes, location, appointmentStartPro, appointmentEndPro, adminEmail)
 
-        const res = await fetch('/api/admin/appointment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userEmail,
-                docEmail,
-                notes,
-                location,
-                appointmentStartPro,
-                appointmentEndPro,
-                adminEmail
-            })
-        })
 
-        const data = await res.json()
 
-        console.log(data)
+        // const res = await fetch('/api/admin/appointment', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         userEmail,
+        //         docEmail,
+        //         notes,
+        //         location,
+        //         appointmentStartPro,
+        //         appointmentEndPro,
+        //         adminEmail
+        //     })
+        // })
 
-        if (data.error) {
-            toast.error(data.error)
-            return
-        }
-        else if (data.status == 500){
-            toast.error(data.error)
-            return
-        }
-        else if (data.status == 200){
-            toast.success('Appointment successfully registered')
-            window.location.replace('/admin')
-        }
+        // const data = await res.json()
+
+        // console.log(data)
+
+        // if (data.error) {
+        //     toast.error(data.error)
+        //     return
+        // }
+        // else if (data.status == 500){
+        //     toast.error(data.error)
+        //     return
+        // }
+        // else if (data.status == 200){
+        //     toast.success('Appointment successfully registered')
+        //     window.location.replace('/admin')
+        // }
     }
 
     return (
