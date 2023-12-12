@@ -27,7 +27,7 @@ export default function EditInsurance() {
                     <input type="number" name='weight' className="input input-bordered w-full max-w-xs my-2 text-center" required={true} />
                 </div>
             </div>
-            <button className="btn-primary btn mt-5 text-white" type="submit">Finish User Registration</button>
+            <button className="btn-primary btn mt-5 text-white" type="submit">Finish Updating Insurance Policy </button>
         </form>
 
     )
