@@ -8,7 +8,7 @@ import medicalBackground from "@/public/medical-background.jpg"
 import DashboardModals from "./DashboardModals"
 import Appointment from "./Appointments/Appointment";
 import DashboardInfo from "./DashboardInfo";
-import Insurance from './Insurance';
+import Insurance from './Insurance/Insurance';
 
 export default function Dash(){
     const [modalOpenState, setOpenModalState] = useState(false);
