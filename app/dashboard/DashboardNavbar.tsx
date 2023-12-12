@@ -49,6 +49,7 @@ export default async function DashboardNavbar({ userEmail }: Props) {
                     <li><a href="/dashboard"> View Personal Information</a></li>
                     {isDoctor && <li><a href="/doctor_dashboard"> DOCTOR DASHBOARD </a></li>}
                     <li><Link href={'/personal'}> Edit Personal Details </Link></li>
+                    <li><a href="/dashboard/pharmDashboard"></a> </li>
                 </ul>
             </div>
             <div className="navbar-end">
