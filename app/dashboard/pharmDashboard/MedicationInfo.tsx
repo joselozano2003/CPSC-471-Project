@@ -1,3 +1,5 @@
+import { useState } from "react"
+import AddMedication from "./AddMedication"
 
 interface Props {
     closeModal:  ()=>void
@@ -5,6 +7,17 @@ interface Props {
 
 
 export default function MedicationInfo(props: Props) {
+
+
+    const[isAddMedicine, setAddMedicine] = useState(false)
+
+    const openEditMedicine = () => {
+        setAddMedicine(true)
+    }
+
+    const closeEditMedicine = () => {
+        setAddMedicine(false);
+    }
 
 
     return (
@@ -68,6 +81,11 @@ export default function MedicationInfo(props: Props) {
                 
                     
                 </table>
+
+                <button className="btn btn-primary" onClick={openEditMedicine}>Add Medication </button>
+
+
+                {isAddMedicine && (<AddMedication closeEditMedicine={closeEditMedicine}></AddMedication>)}
 
 
                 <button className="btn btn-primary" onClick={props.closeModal}>Close Medications</button>

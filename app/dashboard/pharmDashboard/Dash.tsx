@@ -56,8 +56,6 @@ export default function Dash() {
     return (
         <div className="modal-container">
 
-                
-            <p> test </p> 
 
             <div className="background-wrapper" style={bgStyling}>
 
