@@ -42,6 +42,11 @@ export default async function Page() {
                         Make Appointment
                     </button>
                 </Link>
+                <Link href={"/admin/labtest"}>
+                    <button className="btn btn-primary">
+                        Book Lab Test
+                    </button>
+                </Link>
             </div>
         </div>
     )

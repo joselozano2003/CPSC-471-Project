@@ -8,8 +8,7 @@ import { isAdmin, isUserComplete } from "@/utils/roles/route"
 import Link from "next/link"
 import BackButton from "@/components/BackButton"
 import App from "next/app"
-import AppointmentForm from "./AppointmentForm"
-import LabTestForm from "./LabTestForm"
+import LabTestForm from "../labtest/LabTestForm"
 
 export default async function Page() {
 
@@ -35,8 +34,8 @@ export default async function Page() {
     return (
         <div>
             <BackButton href="/admin" />
-            <h1 className="m-5 font-bold text-3xl text-center">Appointments</h1>
-            <AppointmentForm adminEmail={userEmail!}/>
+            <h1 className="m-5 font-bold text-3xl text-center">Schedule a Lab Test</h1>
+            <LabTestForm adminEmail={userEmail!}/>
         </div>
     )
 }
