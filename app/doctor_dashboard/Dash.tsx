@@ -9,6 +9,7 @@ import Appointment from '../dashboard/Appointments/Appointment';
 import { SetStateAction, useState } from 'react';
 import DashboardModals from '../dashboard/DashboardModals';
 import { Appointment as Appointments} from '@prisma/client';
+import MedicalRecords from './MedicalRecord/MedicalRecord';
 
 interface DashProps {
     appointmentData: Appointments[]
@@ -17,7 +18,7 @@ interface DashProps {
 export default function Dash({ appointmentData }: DashProps) {
 
     const [modalOpenState, setOpenModalState] = useState(false);
-    const [showApptModal, setShowApptModal] = useState(false);
+    const [showMedRecordModal, setMedRecordModal] = useState(false);
     const [modalTitle, setModalTitle] = useState('');
 
 
@@ -31,12 +32,12 @@ export default function Dash({ appointmentData }: DashProps) {
     }
 
 
-    const apptClicked = () => {
-        setShowApptModal(true);
+    const medicalRecordClicked = () => {
+        setMedRecordModal(true);
     }
 
-    const closeAppt = () => {
-        setShowApptModal(false);
+    const closeMedicalRecord = () => {
+        setMedRecordModal(false);
     }
 
 
@@ -65,24 +66,29 @@ export default function Dash({ appointmentData }: DashProps) {
 
 
                     <DashboardModals title="Medical Report" description="View patients' medical reports" openModal={openModal} > </DashboardModals>
-                    <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals>
-                
 
-                    {/* MAKE THIS BUTTON OPEN UP THE APPOINTMENTS VIEW */}
+
                     <div className="card w-96 bg-neutral text-neutral-content">
-                        <button className="card-body items-center text-center" onClick={apptClicked}>
-                            <h2 className="card-title">Scheduled Appointments</h2>
-                            <p>Schedule/View your schedule</p>
+                        <button className="card-body items-center text-center" onClick={medicalRecordClicked}>
+                            <h2 className="card-title"> Medical Record </h2>
+                            <p>View/Edit/Create Medical Records</p>
                             
                         </button>
                     </div> 
+
+
+                    <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals>
+                
+
+                    
+                    
                 </div>
                 
                 </div>
                 <div className="modal-clicked-container">
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
+                    {showMedRecordModal && (<MedicalRecords closeMedicalRecord={closeMedicalRecord}></MedicalRecords>)}
                 </div>
 
             </div>
