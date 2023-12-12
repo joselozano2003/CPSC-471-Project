@@ -67,7 +67,7 @@ export default function MedicalRecords(props: Props) {
         <div className="modal-container bg-white">
             <div className="modal-overlay">
 
-            <div className="centerMenu">
+                    <div className="centerMenu">
                         <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
                             <li>
                                 <button disabled={!isViewMedRecordClickable} onClick={() => showMedRecord(true)}>
@@ -82,7 +82,7 @@ export default function MedicalRecords(props: Props) {
                         </ul>
                     </div>
                 
-                <div className="content-view">
+                    <div className="content-view">
                     
 
                     {content}
