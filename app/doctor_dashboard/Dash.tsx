@@ -75,12 +75,7 @@ export default function Dash({ appointmentData }: DashProps) {
                             <p>Schedule/View your schedule</p>
                             
                         </button>
-
-                        
                     </div> 
-
-                    
-                    
                 </div>
                 
                 </div>

@@ -42,24 +42,17 @@ export default async function DoctorDashboard(props: DoctorProps) {
 
     const userExists = await isUserComplete(userEmail!)
 
-    const patientData = await db.patient.findMany({
-        where: {
-            userId: userEmail
-        }
-    })
-
+    
+    if (!userExists) {
+        return redirect('/personal')
+    }
+    
     const appointmentData = await db.appointment.findMany({
         where: {
             physicianId: userEmail
         }
     })
-
-    console.log(appointmentData)
     
-    if (!userExists) {
-        return redirect('/personal')
-    }
-
     return (
         <div>
             <div className="navbar-container"> 

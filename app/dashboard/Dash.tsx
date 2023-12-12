@@ -9,8 +9,13 @@ import DashboardModals from "./DashboardModals"
 import Appointment from "./Appointments/Appointment";
 import DashboardInfo from "./DashboardInfo";
 import Insurance from './Insurance/Insurance';
+import { Appointment as Appointments} from '@prisma/client';
 
-export default function Dash(){
+interface Props {
+    appointmentData: any
+}
+
+export default function Dash({ appointmentData }: Props) {
     const [modalOpenState, setOpenModalState] = useState(false);
     const [showInsuranceState, setShowInsuranceState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
@@ -102,7 +107,7 @@ export default function Dash(){
                 <div className="modal-clicked-container">
 
                     {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {showApptModal && (<Appointment closeAppt={closeAppt}></Appointment>)}
+                    {showApptModal && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
                     {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
 
                 </div>
