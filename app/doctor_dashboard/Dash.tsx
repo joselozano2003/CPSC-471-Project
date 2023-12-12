@@ -58,10 +58,6 @@ export default function Dash({ appointmentData }: DashProps) {
 
     return (
         <div className="modal-container">
-
-                
-                
-
             <div className="background-wrapper" style={bgStyling}>
 
                 <div className="modal-wrapper" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '50px'}}> 
@@ -84,25 +80,23 @@ export default function Dash({ appointmentData }: DashProps) {
                         </button>
 
                     </div>  */}
-
-                    </div> 
+ 
                     <div className="card w-96 bg-neutral text-neutral-content">
                         <Link href={"./doctor_dashboard/medicalreport"}>
                         <h2 className="card-title">Create Medical Report</h2>
                         </Link>
                     </div> 
                     
-            
+                </div>
     
-                </div>
-                
-                </div>
-                <div className="modal-clicked-container">
-
-                    {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
-                </div>
-
             </div>
+                
+            <div className="modal-clicked-container">
+
+                {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
+                {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
+            </div>
+
+        </div>
     )
 }
