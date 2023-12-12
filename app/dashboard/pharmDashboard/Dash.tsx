@@ -2,7 +2,7 @@
 
 import React, { FC } from 'react'
 import 'react-calendar/dist/Calendar.css';
-import doctorDashboardBanner from "@/public/doctor-dashboard.jpg";
+import pharmacyDashboardBanner from "@/public/pharmacy.jpg";
 import Appointment from '../Appointments/Appointment';
 
 import { SetStateAction, useState } from 'react';
@@ -42,7 +42,7 @@ export default function Dash() {
 
 
     const bgStyling = {
-        backgroundImage: `url(${doctorDashboardBanner.src})`,
+        backgroundImage: `url(${pharmacyDashboardBanner.src})`,
         backgroundSize : "100% auto",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
