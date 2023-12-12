@@ -3,12 +3,12 @@
 import React, { FC } from 'react'
 import 'react-calendar/dist/Calendar.css';
 import doctorDashboardBanner from "@/public/doctor-dashboard.jpg";
-import DashboardInfo from '../DashboardInfo';
 import Appointment from '../Appointments/Appointment';
 
 import { SetStateAction, useState } from 'react';
 import DashboardModals from '../DashboardModals';
 import { Appointment as Appointments} from '@prisma/client';
+import MedicationInfo from './MedicationInfo';
 
 interface DashProps {
     appointmentData: Appointments[]
@@ -64,31 +64,16 @@ export default function Dash() {
                 <div className="modal-wrapper" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '50px'}}> 
 
 
-                    <DashboardModals title="Medication" description="View all medications" openModal={openModal} > </DashboardModals>
-                    <DashboardModals title="Modify Medications" description="Modify Medications" openModal={openModal}> </DashboardModals>
+                    <DashboardModals title="Medication" description="View and manage all medications" openModal={openModal} > </DashboardModals>
+
                 
-
-                    {/* MAKE THIS BUTTON OPEN UP THE APPOINTMENTS VIEW */}
-                    <div className="card w-96 bg-neutral text-neutral-content">
-                        <button className="card-body items-center text-center" onClick={apptClicked}>
-                            <h2 className="card-title">Scheduled Appointments</h2>
-                            <p>Schedule/View your schedule</p>
-                            
-                        </button>
-                        
-                        
-                    </div> 
-
-                    
-                    
                 </div>
                 
                 </div>
                 <div className="modal-clicked-container">
 
-                    {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                    {/* {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
-                </div> */}
+                    {modalOpenState && (<MedicationInfo closeModal={closeModel}></MedicationInfo>)}
+                    
                 </div> 
             </div>
     )
