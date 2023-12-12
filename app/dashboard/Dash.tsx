@@ -3,7 +3,7 @@
 import './page.css'
 import { SetStateAction, useState } from 'react';
 
-import medicalBackground from "@/public/medical-background.jpg"
+import pharmacyBackground from "@/public/pharmacy.jpg"
 
 import DashboardModals from "./DashboardModals"
 import Appointment from "./Appointments/Appointment";
@@ -47,7 +47,7 @@ export default function Dash({ appointmentData }: Props) {
     }
 
     const bgStyling = {
-        backgroundImage: `url(${medicalBackground.src})`,
+        backgroundImage: `url(${pharmacyBackground.src})`,
         backgroundSize : "100% auto",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
