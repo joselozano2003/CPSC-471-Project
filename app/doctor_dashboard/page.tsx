@@ -14,12 +14,8 @@ import { createClient } from '@/utils/supabase/server'
 import { isUserComplete } from "@/utils/roles/route";
 import { db } from '@/utils/prisma';
 
-interface DoctorProps {
-  children: any
-  
-}
 
-export default async function DoctorDashboard(props: DoctorProps) {
+export default async function DoctorDashboard() {
 
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)

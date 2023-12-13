@@ -9,7 +9,6 @@ import Link from "next/link"
 import BackButton from "@/components/BackButton"
 import App from "next/app"
 import AppointmentForm from "./AppointmentForm"
-import LabTestForm from "./LabTestForm"
 
 export default async function Page() {
 

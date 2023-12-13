@@ -99,7 +99,7 @@ model MedicalStaff {
 }
 
 model MedicalTest {
-  id                  String              @id
+  id                  Int              @id @default(autoincrement())
   name                String
   patientId           Int
   physicianId         String
