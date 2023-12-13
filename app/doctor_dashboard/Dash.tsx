@@ -3,20 +3,20 @@
 import React, { FC } from 'react'
 import 'react-calendar/dist/Calendar.css';
 import doctorDashboardBanner from "@/public/doctor-dashboard.jpg";
-import DashboardInfo from '../dashboard/DashboardInfo';
+import DashboardInfo from './DashInfo';
 import Appointment from '../dashboard/Appointments/Appointment';
 
 import { SetStateAction, useState } from 'react';
 import DashboardModals from '../dashboard/DashboardModals';
 import { Appointment as Appointments} from '@prisma/client';
 import Link from 'next/link';
-import MedicalReportForm from './medicalreport/MedicalReportForm';
 
 interface DashProps {
     appointmentData: Appointments[]
+    medicalReports: any
 }
 
-export default function Dash({ appointmentData }: DashProps) {
+export default function Dash({ appointmentData, medicalReports }: DashProps) {
 
     const [modalOpenState, setOpenModalState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
@@ -85,7 +85,7 @@ export default function Dash({ appointmentData }: DashProps) {
                 </div>
                 <div className="modal-clicked-container">
 
-                    {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel} data={undefined}></DashboardInfo>)}
+                    {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel} data={medicalReports}></DashboardInfo>)}
                     {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
                 </div>
 

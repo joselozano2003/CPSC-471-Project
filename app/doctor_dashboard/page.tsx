@@ -43,12 +43,30 @@ export default async function DoctorDashboard() {
         }
     })
 
+    const medicalRecords = await db.medicalRecord.findMany({
+        where : {
+            physicianId: userEmail
+        }
+    })
+
+    const medicalRecordIds = medicalRecords.map(record => record.id);
+
+    console.log(medicalRecordIds)
+
+    const medicalReports = await db.medicalReport.findMany({
+        where: {
+          medicalRecordId: {
+            in: medicalRecordIds
+          }
+        }
+    });
+
     return (
         <div>
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>    
-            <Dash appointmentData={appointmentData}/>
+            <Dash appointmentData={appointmentData} medicalReports={medicalReports}/>
         </div>
     )
 }
