@@ -2,16 +2,8 @@
 
 
 import DashboardNavbar from '../DashboardNavbar'
-
-import ReactCalendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import doctorDashboardBanner from "public/doctor-dashboard.jpg"; // <a href="https://www.freepik.com/free-photo/stethoscope-prescription-laptop_1129629.htm#query=healthcare&position=32&from_view=search&track=sph&uuid=9c095130-d8a5-450b-8847-30346a22881b">Image by jannoon028</a> on Freepik
-import InnerPageBanner from './InnerPageBanner';
-import DashboardInfo from '../DashboardInfo';
-import Appointment from '../Appointments/Appointment';
-
 import Dash from './Dash';
-
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -27,43 +19,41 @@ interface DoctorProps {
 
 export default async function PharmacyDashboard() {
 
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const cookieStore = cookies() // get cookies from the incoming request
+    const supabase = createClient(cookieStore) // create a new client using the cookies
 
     const {
         data: { user },
-    } = await supabase.auth.getUser()
+    } = await supabase.auth.getUser() // get the user from the client
 
     if (!user) {
-        return redirect('/login')
+        return redirect('/login') // if there is no user, redirect to login
     }
 
-    const userEmail = user.email
+    const userEmail = user.email // get the user's email
 
-    const userExists = await isUserComplete(userEmail!)
+    const userExists = await isUserComplete(userEmail!) // check if the user has completed their profile
 
-    const patientData = await db.patient.findMany({
+    const patientData = await db.patient.findMany({ // get the patient data
         where: {
             userId: userEmail
         }
     })
 
-    const appointmentData = await db.appointment.findMany({
+    const appointmentData = await db.appointment.findMany({ // get the appointment data
         where: {
             physicianId: userEmail
         }
     })
-
-    console.log(appointmentData)
     
     if (!userExists) {
-        return redirect('/personal')
+        return redirect('/personal') // if the user has not completed their profile, redirect to personal
     }
 
     return (
         <div>
             <div className="navbar-container"> 
-                <DashboardNavbar userEmail={userEmail!}/>
+                <DashboardNavbar userEmail={userEmail!}/> 
             </div>    
             <Dash/>
         </div>

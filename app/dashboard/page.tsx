@@ -85,6 +85,7 @@ export default async function Dashboard() {
     else {
         recordFlag = true
     }
+
     const bgStyling = {
         backgroundImage: `url(${xrayBackground.src})`,
         backgroundSize : "100% auto",
@@ -103,8 +104,6 @@ export default async function Dashboard() {
     })
 
     let companyData: any = []
-
-    console.log(insuranceData)
 
     let insuranceFlag = true
 

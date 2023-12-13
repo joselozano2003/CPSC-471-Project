@@ -21,23 +21,6 @@ export default function FirstTimeForm({ userEmail }: Props) {
         setSelectedOption(event.target.value);
     };
 
-
-    // TODO: Add extra fields for staff account for security purposes
-    // const [showExtra, setShowExtra] = useState(false)
-
-    // useEffect(() => {
-    //     console.log(selectedOption)
-    //     if (selectedOption === 'Staff Account') {
-    //         setShowExtra(true)
-    //     }
-    //     else {
-    //         setShowExtra(false)
-    //     }
-        
-    // }, [selectedOption])
-
-
-
     const modifyProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)

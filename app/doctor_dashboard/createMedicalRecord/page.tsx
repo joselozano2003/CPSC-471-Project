@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
 import { isDoctor, isUserComplete } from "@/utils/roles/route";
-import { db } from '@/utils/prisma';
 import CreateMedicalRecordForm from './CreateMedicalRecordForm';
 import BackButton from '@/components/BackButton';
 

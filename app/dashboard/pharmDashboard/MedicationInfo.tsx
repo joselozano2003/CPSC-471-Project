@@ -8,9 +8,6 @@ export default function MedicationInfo(props: Props) {
 
 
     return (
-
-      
-            
         <div className="overflow-x-auto">
                 
                 <table className="table">
