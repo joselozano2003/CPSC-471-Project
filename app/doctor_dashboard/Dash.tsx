@@ -59,7 +59,7 @@ export default function Dash({ appointmentData }: DashProps) {
             <div className="background-wrapper flex flex-col [&>*]:p-5" style={bgStyling}>
                 <div className="modal-wrapper" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '50px'}}> 
                     <DashboardModals title="Medical Report" description="View patients' medical reports" openModal={openModal} > </DashboardModals>
-                    <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals>
+                    {/* <DashboardModals title="Prescriptions" description="View patients' past and ongoing prescriptions" openModal={openModal}> </DashboardModals> */}
                     <Link href={"/doctor_dashboard/createMedicalRecord"}>
                         <DashboardModals title="Create Medical Record" description="Create Record for Patient" openModal={()=> {}}> </DashboardModals>
                     </Link>        
@@ -71,7 +71,7 @@ export default function Dash({ appointmentData }: DashProps) {
                 </div>
             </div>
             <div className="modal-clicked-container">
-                {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
+                {modalOpenState && (<DashboardInfo title={modalTitle} data={[]} closeModal={closeModel}></DashboardInfo>)}
                 {showApptModal && (<Appointment data={appointmentData} closeAppt={closeAppt}></Appointment>)}
             </div>
         </div>
