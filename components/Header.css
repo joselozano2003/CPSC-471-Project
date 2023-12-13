@@ -1,0 +1,11 @@
+.logo-wrapper {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    margin-left: 20px;
+}
+

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&family=Inconsolata:wght@200;300;400;500;600;700;800;900&family=Playfair:ital,opsz,wght@0,5..1200,300;0,5..1200,400;0,5..1200,500;0,5..1200,600;0,5..1200,700;0,5..1200,800;0,5..1200,900;1,5..1200,300;1,5..1200,400;1,5..1200,500;1,5..1200,600;1,5..1200,700;1,5..1200,800;1,5..1200,900&display=swap');
+
+body {
+    font-family: 'Hedvig Letters Sans', sans-serif;
+    font-weight: 500;
+  }
+  
+.card-title {
+    margin: 5%;
+    font-size: 24px;
+}
+
+.card-body {
+    padding: var(--padding-card, 5%);
+}
+

@@ -1,0 +1,29 @@
+.modal-container {
+    min-height: 70%;
+    min-width: 80%;
+    position: relative;
+}
+
+.centerMenu {
+    
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.content-view {
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.modal-action {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1%;
+    /* Additional styles as needed */
+}

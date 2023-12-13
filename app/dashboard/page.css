@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&family=Inconsolata:wght@200;300;400;500;600;700;800;900&family=Playfair:ital,opsz,wght@0,5..1200,300;0,5..1200,400;0,5..1200,500;0,5..1200,600;0,5..1200,700;0,5..1200,800;0,5..1200,900;1,5..1200,300;1,5..1200,400;1,5..1200,500;1,5..1200,600;1,5..1200,700;1,5..1200,800;1,5..1200,900&display=swap');
+
+body {
+    font-family: 'Hedvig Letters Sans', sans-serif;
+    font-weight: 500;
+  }
+.modal-container {
+    /* background-color: antiquewhite; */
+}
+
+.modal-wrapper {
+
+    display: flex;
+    flex-direction: row;
+    /* align-items: center;
+    justify-content: space-between; */
+    
+    
+
+}
+
+.modal-wrapper > * {
+    margin-left: 5%;
+    width: 100%;
+    box-sizing: border-box;
+}    
+
+.h1-container {
+
+    margin-top: 2%;
+    margin-left: 5%; 
+    margin-bottom: 2%;
+    font-size: 24px; 
+    font-weight: 700;
+}
+
+.background-wrapper {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

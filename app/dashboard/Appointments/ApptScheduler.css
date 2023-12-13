@@ -1,0 +1,13 @@
+.container-center {
+    display: flex;
+    justify-content: center;
+    position: relative
+
+}
+
+.calendar-container {
+    position: absolute;
+    top: 20%; 
+    left: 10%;
+    z-index: 999; 
+  }
