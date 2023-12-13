@@ -3,6 +3,7 @@ import "./DashboardNavbar.css"
 import { db } from "@/utils/prisma";
 import { AppUser } from "@prisma/client";
 import Link from "next/link";
+import { isPatient } from "@/utils/roles/route";
 
 interface Props {
     userEmail: string
@@ -22,15 +23,15 @@ export default async function DashboardNavbar({ userEmail }: Props) {
         }
     })
 
-    console.log(doctorData)
-
     let isDoctor: boolean = false
 
     if (doctorData) {
         isDoctor = true
     }
 
-    console.log(isDoctor)
+    const userIsPatient = await isPatient(userEmail!)
+
+    console.log(userIsPatient)
 
     return (
 
@@ -46,7 +47,7 @@ export default async function DashboardNavbar({ userEmail }: Props) {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     
-                    <li><a href="/dashboard"> View Personal Information</a></li>
+                    {userIsPatient ? <li><a href="/dashboard"> View Personal Information</a></li> : <li><a href="/dashboard"> Home</a></li>}
                     {isDoctor && <li><a href="/doctor_dashboard"> DOCTOR DASHBOARD </a></li>}
                     <li><Link href={'/personal'}> Edit Personal Details </Link></li>
                     <li><a href="/dashboard/pharmDashboard"></a> </li>

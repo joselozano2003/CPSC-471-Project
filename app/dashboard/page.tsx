@@ -143,7 +143,13 @@ export default async function Dashboard() {
                                 Doctor
                             </button>
                         </Link>
-                        
+
+                        {/* <Link href={"/dashboard/pharmDashboard"}>
+                            <button className="btn btn-primary text-lg py-2 px-4">
+                                Pharmacy
+                            </button>
+                        </Link> */}
+
                     </div>
                     </div>
                 </div>
