@@ -119,7 +119,7 @@ export default async function Dashboard() {
                 userIsPatient ? <Dash recordData={medicalReports} appointmentData={appointmentData} appointmentFlag={appointmentFlag} recordFlag={recordFlag}/> 
                 : 
                 <div className="modal-container">
-                    <h1 className="m-5 font-bold text-3xl text-center">Not a Patient (staff version )</h1>
+                    <h1 className="m-5 font-bold text-3xl text-center">Staff Portal</h1>
                     <div className="background-wrapper" style={bgStyling}>
                     <div className="flex flex-row justify-around w-[50%]">
                         <Link href={"/admin"}>
