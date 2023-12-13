@@ -15,9 +15,12 @@ interface Props {
     recordData: any
     appointmentFlag: boolean
     recordFlag: boolean
+    insuranceData: any
+    userData: any
+    companyData: any
 }
 
-export default function Dash({ appointmentData, appointmentFlag, recordFlag, recordData }: Props) {
+export default function Dash({ userData, companyData, insuranceData, appointmentData, appointmentFlag, recordFlag, recordData }: Props) {
     const [modalOpenState, setOpenModalState] = useState(false);
     const [showInsuranceState, setShowInsuranceState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
@@ -87,7 +90,7 @@ export default function Dash({ appointmentData, appointmentFlag, recordFlag, rec
 
                 {(modalOpenState && recordFlag) && (<DashboardInfo title={modalTitle} closeModal={closeModel} data={recordData}></DashboardInfo>)}
                 {(showApptModal && appointmentFlag) && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
-                {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
+                {showInsuranceState && (<Insurance insuranceData={insuranceData} companyData={companyData} closeInsurance={closeInsurance} userData={userData}></Insurance>)}
 
             </div>
         </div>

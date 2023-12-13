@@ -26,17 +26,12 @@ export default async function Dashboard() {
     }
 
     const userEmail = user.email
-
     const userExists = await isUserComplete(userEmail!)
-    
     if (!userExists) {
         return redirect('/personal')
     }
 
     const userIsPatient = await isPatient(userEmail!)
-
-    console.log(userIsPatient)
-
     const patientData = await db.patient.findMany({
         where: {
             userId: userEmail
@@ -57,8 +52,8 @@ export default async function Dashboard() {
         })
     }
 
-    let patientRecord: any = []
 
+    let patientRecord: any = []
     if (appointmentFlag) {
         patientRecord = await db.medicalRecord.findMany({
             where: {
@@ -66,11 +61,7 @@ export default async function Dashboard() {
             }
         })
     }
-
-    console.log(patientRecord)
-
     let recordFlag = true
-
     if (patientRecord.length === 0) {
         recordFlag = false
     }
@@ -78,8 +69,8 @@ export default async function Dashboard() {
         recordFlag = true
     }
 
-    let medicalReports: any = []
 
+    let medicalReports: any = []
     if (recordFlag) {
         medicalReports = await db.medicalReport.findMany({
             where: {
@@ -87,18 +78,13 @@ export default async function Dashboard() {
             }
         })
     }
-
     recordFlag = true
-
-    console.log(medicalReports)
-
     if (medicalReports.length === 0) {
         recordFlag = false
     }
     else {
         recordFlag = true
     }
-
     const bgStyling = {
         backgroundImage: `url(${xrayBackground.src})`,
         backgroundSize : "100% auto",
@@ -110,13 +96,38 @@ export default async function Dashboard() {
         alignItems: "center",
     }
 
+    const insuranceData = await db.insurancePolicy.findMany({
+        where: {
+            userId: userEmail
+        }
+    })
+
+    let companyData: any = []
+
+    console.log(insuranceData)
+
+    let insuranceFlag = true
+
+    if (insuranceData.length === 0) {
+        insuranceFlag = false
+    }
+    else {
+        insuranceFlag = true
+        companyData = await db.insuranceCompany.findMany({
+            where: {
+                id: insuranceData[0].insuranceCompanyId
+            }
+        })
+    }
+
+
     return (
         <div>
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>
             {
-                userIsPatient ? <Dash recordData={medicalReports} appointmentData={appointmentData} appointmentFlag={appointmentFlag} recordFlag={recordFlag}/> 
+                userIsPatient ? <Dash companyData={companyData} userData={patientData} insuranceData={insuranceData} recordData={medicalReports} appointmentData={appointmentData} appointmentFlag={appointmentFlag} recordFlag={recordFlag}/> 
                 : 
                 <div className="modal-container">
                     <h1 className="m-5 font-bold text-3xl text-center">Staff Portal</h1>
