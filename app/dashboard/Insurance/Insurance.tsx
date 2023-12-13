@@ -51,7 +51,7 @@ export default function Insurance({insuranceData, closeInsurance, companyData, u
         //Show appointments table
         content=(
         <div> 
-            <ViewInsurance></ViewInsurance>
+            <ViewInsurance insuranceData={insuranceData} companyData={companyData}/>
 
         </div>
         
