@@ -10,19 +10,15 @@ interface Props {
     title: string
     description: string
     openModal: (title: string) => void;
-    
-    
-
 }
 
-export default function DashboardModals(props: Props) {
-
+export default function DashboardModals({ children, title, description, openModal }: Props) {
 
     const [modalColor, setModalColor] = useState("bg-neutral");
 
     //This is needed because otherwise onClick will error below 
     const handleModalOpen = () => {
-        props.openModal(props.title);
+        openModal(title);
         
     };
 
@@ -31,8 +27,8 @@ export default function DashboardModals(props: Props) {
         
         <div className={`card w-96 ${modalColor} text-neutral-content`} onClick={handleModalOpen}>
             <button className="card-body items-center text-center">
-                <h2 className="card-title">{props.title}</h2>
-                <p>{props.description}</p>
+                <h2 className="card-title">{title}</h2>
+                <p>{description}</p>
                 
             </button>
         </div>

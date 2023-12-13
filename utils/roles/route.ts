@@ -25,6 +25,20 @@ export async function isUserComplete(email: string) {
     
 }
 
+export async function isPatient(email: string) {
+    const user = await db.patient.findUnique({
+        where: {
+            userId: email
+        }
+    })
+
+    if (!user) {
+        return false
+    }
+
+    return true
+}
+
 
 export async function isAdmin(email: string) {
     const user = await db.administrativeStaff.findUnique({

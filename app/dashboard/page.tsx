@@ -8,7 +8,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
-import { isUserComplete } from "@/utils/roles/route";
+import { isPatient, isUserComplete } from "@/utils/roles/route";
 import Link from "next/link";
 import xrayBackground from "@/public/x-ray-scan.jpg";
 
@@ -33,19 +33,23 @@ export default async function Dashboard() {
         return redirect('/personal')
     }
 
+    const userIsPatient = await isPatient(userEmail!)
+
+    console.log(userIsPatient)
+
     const patientData = await db.patient.findMany({
         where: {
             userId: userEmail
         }
     })
 
-    let flag = true
+    let appointmentFlag = true
     let appointmentData
     if (patientData.length === 0) {
-        flag = false
+        appointmentFlag = false
     }
     else {
-        flag = true
+        appointmentFlag = true
         appointmentData = await db.appointment.findMany({
             where: {
                 patientId: patientData[0].id
@@ -53,6 +57,39 @@ export default async function Dashboard() {
         })
     }
 
+    const patientRecord = await db.medicalRecord.findMany({
+        where: {
+            patientId: patientData[0].id
+        }
+    })
+
+    console.log(patientRecord)
+
+    let recordFlag = true
+
+    if (patientRecord.length === 0) {
+        recordFlag = false
+    }
+    else {
+        recordFlag = true
+    }
+
+    const medicalReports = await db.medicalReport.findMany({
+        where: {
+            medicalRecordId: patientRecord[0].id
+        }
+    })
+
+    recordFlag = true
+
+    console.log(medicalReports)
+
+    if (medicalReports.length === 0) {
+        recordFlag = false
+    }
+    else {
+        recordFlag = true
+    }
 
     const bgStyling = {
         backgroundImage: `url(${xrayBackground.src})`,
@@ -63,7 +100,6 @@ export default async function Dashboard() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        
     }
 
     return (
@@ -71,31 +107,32 @@ export default async function Dashboard() {
             <div className="navbar-container"> 
                 <DashboardNavbar userEmail={userEmail!}/>
             </div>
-            { flag ? <Dash appointmentData={appointmentData}/> : 
-           
-            <div className="modal-container">
-            <h1 className="m-5 font-bold text-3xl text-center">Not a Patient (staff version )</h1>
-            <div className="background-wrapper" style={bgStyling}>
-            <div className="flex flex-row justify-around w-[50%]">
-                <Link href={"/admin"}>
-                    <button className="btn btn-primary text-lg py-2 px-4">
-                        Admin
-                    </button>
-                </Link>
-                <Link href={"/doctor_dashboard"}>
-                    <button className="btn btn-primary text-lg py-2 px-4">
-                        Doctor
-                    </button>
-                </Link>
-                <Link href={"/dashboard/pharmDashboard"}>
-                    <button className="btn btn-primary text-lg py-2 px-4">
-                        Pharmacy
-                    </button>
-                </Link>
-            </div>
-            </div>
-        </div>}
-
+            {
+                userIsPatient ? <Dash recordData={medicalReports} appointmentData={appointmentData} appointmentFlag={appointmentFlag} recordFlag={recordFlag}/> 
+                : 
+                <div className="modal-container">
+                    <h1 className="m-5 font-bold text-3xl text-center">Not a Patient (staff version )</h1>
+                    <div className="background-wrapper" style={bgStyling}>
+                    <div className="flex flex-row justify-around w-[50%]">
+                        <Link href={"/admin"}>
+                            <button className="btn btn-primary text-lg py-2 px-4">
+                                Admin
+                            </button>
+                        </Link>
+                        <Link href={"/doctor_dashboard"}>
+                            <button className="btn btn-primary text-lg py-2 px-4">
+                                Doctor
+                            </button>
+                        </Link>
+                        <Link href={"/dashboard/pharmDashboard"}>
+                            <button className="btn btn-primary text-lg py-2 px-4">
+                                Pharmacy
+                            </button>
+                        </Link>
+                    </div>
+                    </div>
+                </div>
+        }   
         </div>
     )
 }

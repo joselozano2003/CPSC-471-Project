@@ -1,12 +1,13 @@
-
+import { MedicalReport } from "@prisma/client"
 interface Props {
-    children: any
+    data: MedicalReport[]
 }
 
 
-export default function DashboardTable(props: Props) {
+export default function DashboardTable({ data }: Props) {
 
 
+    console.log(data)
 
     return (
 
@@ -23,7 +24,7 @@ export default function DashboardTable(props: Props) {
                             <input type="checkbox" className="checkbox" />
                         </label>
                         </th>
-                        <th>Patient Name</th>
+                        <th>Date</th>
                         <th>Treatment</th>
                         <th>Diagnosis</th>
                         <th></th>
@@ -31,31 +32,34 @@ export default function DashboardTable(props: Props) {
                     </thead>
                     <tbody>
                     {/* row 1 */}
-                    <tr>
-                        <th>
-                        <label>
-                            <input type="checkbox" className="checkbox" />
-                        </label>
-                        </th>
-                        <td>
-                        <div className="flex items-center gap-3">
-                            <div>
-                            <div className="font-bold">Patient Name</div>
-                            <div className="text-sm opacity-50">ADDRESS</div>
-                            </div>
-                        </div>
-                        </td>
-                        <td>
-                        HIV Test
-                        <br/>
-                        
-                        </td>
-                        <td>Positive</td>
-                        <th>
-                        <button className="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    
+                    {
+                        data.map((report) => (
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" className="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div>
+                                        <div className="font-bold">{report.date.toLocaleDateString()}</div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                <td>
+                                {report.treatment}
+                                <br/>
+                                
+                                </td>
+                                <td>{report.diagnostics}</td>
+                                <th>
+                                <button className="btn btn-ghost btn-xs">{report.notes}</button>
+                                </th>
+                            </tr>
+                        ))
+                    }
+                                       
         
                     </tbody>
                 

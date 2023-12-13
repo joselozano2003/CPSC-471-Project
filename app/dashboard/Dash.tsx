@@ -12,9 +12,12 @@ import Insurance from './Insurance/Insurance';
 
 interface Props {
     appointmentData: any
+    recordData: any
+    appointmentFlag: boolean
+    recordFlag: boolean
 }
 
-export default function Dash({ appointmentData }: Props) {
+export default function Dash({ appointmentData, appointmentFlag, recordFlag, recordData }: Props) {
     const [modalOpenState, setOpenModalState] = useState(false);
     const [showInsuranceState, setShowInsuranceState] = useState(false);
     const [showApptModal, setShowApptModal] = useState(false);
@@ -62,8 +65,8 @@ export default function Dash({ appointmentData }: Props) {
             </div>
             <div className="background-wrapper" style={bgStyling}>
                 <div className="modal-wrapper"> 
-                    <DashboardModals title="Medical Record" description="View your medical reports" openModal={openModal}> </DashboardModals>
-                    <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals>
+                    <DashboardModals title="Medical Record" description="View your medical reports" openModal={openModal} > </DashboardModals>
+                    {/* <DashboardModals title="Prescriptions" description="View your past and current prescriptions" openModal={openModal}> </DashboardModals> */}
                     {/* MAKE THIS BUTTON OPEN UP THE APPOINTMENTS VIEW */}
                     <div className="card w-96 bg-neutral text-neutral-content">
                         <button className="card-body items-center text-center" onClick={apptClicked}>
@@ -82,8 +85,8 @@ export default function Dash({ appointmentData }: Props) {
             </div>
             <div className="modal-clicked-container">
 
-                {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel}></DashboardInfo>)}
-                {showApptModal && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
+                {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel} data={recordData}></DashboardInfo>)}
+                {(showApptModal && appointmentFlag) && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
                 {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
 
             </div>
