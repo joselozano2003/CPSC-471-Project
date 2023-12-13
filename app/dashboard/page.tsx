@@ -57,11 +57,15 @@ export default async function Dashboard() {
         })
     }
 
-    const patientRecord = await db.medicalRecord.findMany({
-        where: {
-            patientId: patientData[0].id
-        }
-    })
+    let patientRecord: any = []
+
+    if (appointmentFlag) {
+        patientRecord = await db.medicalRecord.findMany({
+            where: {
+                patientId: patientData[0].id
+            }
+        })
+    }
 
     console.log(patientRecord)
 
@@ -74,11 +78,15 @@ export default async function Dashboard() {
         recordFlag = true
     }
 
-    const medicalReports = await db.medicalReport.findMany({
-        where: {
-            medicalRecordId: patientRecord[0].id
-        }
-    })
+    let medicalReports: any = []
+
+    if (recordFlag) {
+        medicalReports = await db.medicalReport.findMany({
+            where: {
+                medicalRecordId: patientRecord[0].id
+            }
+        })
+    }
 
     recordFlag = true
 

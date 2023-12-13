@@ -85,7 +85,7 @@ export default function Dash({ appointmentData, appointmentFlag, recordFlag, rec
             </div>
             <div className="modal-clicked-container">
 
-                {modalOpenState && (<DashboardInfo title={modalTitle} closeModal={closeModel} data={recordData}></DashboardInfo>)}
+                {(modalOpenState && recordFlag) && (<DashboardInfo title={modalTitle} closeModal={closeModel} data={recordData}></DashboardInfo>)}
                 {(showApptModal && appointmentFlag) && (<Appointment data={appointmentData}closeAppt={closeAppt}></Appointment>)}
                 {showInsuranceState && (<Insurance closeInsurance={closeInsurance}></Insurance>)}
 
